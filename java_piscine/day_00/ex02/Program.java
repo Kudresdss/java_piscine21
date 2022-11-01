@@ -47,6 +47,7 @@ public class Program {
 		
 		if (num <= 1) {
 			System.err.println("IllegalArgument");
+			scanner.close();
 			System.exit(-1);
 		}
 		
@@ -59,6 +60,7 @@ public class Program {
 		}
 		
 		System.out.println("Count of coffee-request - " + count);
+		scanner.close();
 		System.exit(0);
 	}
 }

@@ -5,30 +5,6 @@ public class Program {
 	private static final String EOF = "42";
 	private static final int LIMIT = 18;
 	
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		String week = scanner.nextLine();
-		
-		long grades = 0;
-		int weekNum = 1;
-		int weekMin;
-		
-		while (weekNum <= LIMIT && week.equals(EOF) == false) {
-			if (week.equals("Week " + weekNum) == false) {
-				System.exit(putIllegalArgument());
-			}
-			weekMin = getMinGrade(scanner);
-			grades = getGrades(weekNum, weekMin, grades);
-			weekNum++;
-			week = scanner.nextLine();
-		}
-		
-		for (int i = 1; i < weekNum; i++) {
-			System.out.print("Week " + i + " ");
-			putGraph(i, grades);
-		}
-	}
-	
 	public static void putGraph(int weekNum, long grades) {
 		int printNum;
 		
@@ -72,5 +48,31 @@ public class Program {
 	public static int putIllegalArgument() {
 		System.err.println("IllegalArgument");
 		return (-1);
+	}
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		String week = scanner.nextLine();
+		
+		long grades = 0;
+		int weekNum = 1;
+		int weekMin;
+		
+		while (weekNum <= LIMIT && week.equals(EOF) == false) {
+			if (week.equals("Week " + weekNum) == false) {
+				scanner.close();
+				System.exit(putIllegalArgument());
+			}
+			weekMin = getMinGrade(scanner);
+			grades = getGrades(weekNum, weekMin, grades);
+			weekNum++;
+			week = scanner.nextLine();
+		}
+		
+		for (int i = 1; i < weekNum; i++) {
+			System.out.print("Week " + i + " ");
+			putGraph(i, grades);
+		}
+		scanner.close();
 	}
 }
